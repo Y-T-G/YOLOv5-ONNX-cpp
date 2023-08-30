@@ -96,7 +96,10 @@ int predictVideo(YOLOv5& model, Args args) {
 	}
 
 	cap.release();
-	cv::destroyAllWindows();
+	if (args.save) {
+		writer.release();
+		cv::destroyAllWindows();
+	}
 
 	return 0;
 }
