@@ -47,10 +47,15 @@ YOLOv5::YOLOv5(std::string modelPath, std::vector<int> imgsz, bool gpu, float sc
     // Convert char* to wstring
     std::wstring w_modelPath = convertToWChar(modelPath.c_str());
 
-#endif // _WIN32
-
     // Load model
     session = Ort::Session(env, w_modelPath.c_str(), session_options);
+
+#else
+
+    // Load model
+    session = Ort::Session(env, modelPath.c_str(), session_options);
+
+#endif // _WIN32
 
     // Input tensor info
     Ort::TypeInfo inputTypeInfo = session.GetInputTypeInfo(0);
