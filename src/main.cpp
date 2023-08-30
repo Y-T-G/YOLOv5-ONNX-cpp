@@ -35,9 +35,14 @@ int predictImage(YOLOv5& model, Args args) {
 
 	model.predict_and_draw(img, args.labels);
 
-	cv::imshow(args.source, img);
-	cv::waitKey(0);
-	cv::destroyAllWindows();
+	if (args.save) {
+		cv::imwrite("output.jpg", img);
+	}
+	else {
+		cv::imshow(args.source, img);
+		cv::waitKey(0);
+		cv::destroyAllWindows();
+	}
 
 	return 0;
 }
@@ -49,6 +54,15 @@ int predictVideo(YOLOv5& model, Args args) {
 	std::chrono::steady_clock::time_point end;
 	float latency;
 
+	cv::VideoWriter writer;
+
+	if (args.save) {
+		auto frame_width = cap.get(cv::CAP_PROP_FRAME_WIDTH);
+		auto frame_height = cap.get(cv::CAP_PROP_FRAME_HEIGHT);
+		auto fps = cap.get(cv::CAP_PROP_FPS);
+		writer = cv::VideoWriter("out.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), fps, cv::Size(frame_width, frame_height), true);
+	}
+
 	while (cap.isOpened()) {
 		cv::Mat frame;
 
@@ -58,7 +72,17 @@ int predictVideo(YOLOv5& model, Args args) {
 			begin = std::chrono::steady_clock::now();
 			model.predict_and_draw(frame, args.labels);
 			end = std::chrono::steady_clock::now();
-			cv::imshow(args.source, frame);
+			if (args.save) {
+				writer.write(frame);
+			}
+			else {
+				cv::imshow(args.source, frame);
+
+				if (cv::waitKey(30) == 27)
+				{
+					break;
+				}
+			}
 
 			latency = std::chrono::duration_cast<std::chrono::milliseconds>(end - begin).count();
 			std::cout << "Latency = " << latency << "ms\t";
@@ -66,8 +90,7 @@ int predictVideo(YOLOv5& model, Args args) {
 
 		}
 
-		if (cv::waitKey(30) == 27)
-		{
+		else {
 			break;
 		}
 	}

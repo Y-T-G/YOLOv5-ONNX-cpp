@@ -43,6 +43,7 @@ struct Args
     bool gpu;
     float scoreThresh;
     float iouThresh;
+    bool save;
 };
 
 Args parseArgs(int argc, char **argv);

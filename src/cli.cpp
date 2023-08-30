@@ -56,6 +56,9 @@ Args parseArgs(int argc, char **argv)
         .default_value(0.45f)
         .help("Minimum IoU threshold while applying NMS")
         .scan<'g', float>();
+    program.add_argument("--save")
+        .default_value(false)
+        .help("Whether to output to file instead");
 
     try
     {
@@ -70,6 +73,7 @@ Args parseArgs(int argc, char **argv)
 
     std::string modelPath = program.get<std::string>("--model");
     bool useGPU = program.get<bool>("--gpu");
+    bool save = program.get<bool>("--save");
     float scoreThresh = program.get<float>("--score-thresh");
     float iouThresh = program.get<float>("--iou-thresh");
     std::vector<int> imgSize = program.get<std::vector<int>>("--imgsz");
@@ -120,7 +124,7 @@ Args parseArgs(int argc, char **argv)
         labels = COCO_LABELS;
     }
 
-    Args args{modelPath, type, source, labels, imgSize, useGPU, scoreThresh, iouThresh};
+    Args args{modelPath, type, source, labels, imgSize, useGPU, scoreThresh, iouThresh, save};
 
     std::string emoji = args.type == IMAGE ? "🖼️" : "📷";
     std::cout << emoji + LogInfo(" Detect", "model=" + args.modelPath);
