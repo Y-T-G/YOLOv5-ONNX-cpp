@@ -71,6 +71,7 @@ void exists(std::string path)
     }
 }
 
+#ifdef _WIN32
 std::wstring convertToWChar(const char* str) {
     // Convert char* to wstring using MultiByteToWideChar
     int wstrSize = MultiByteToWideChar(CP_UTF8, 0, str, -1, nullptr, 0);
@@ -85,6 +86,7 @@ std::wstring convertToWChar(const char* str) {
 
     return wstr;
 }
+#endif
 
 std::vector<std::string> retrieve_labels(std::string labels_path) {
 

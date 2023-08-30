@@ -34,7 +34,9 @@ std::string LogError(std::string header, std::string body);
 
 void exists(std::string path);
 
+#ifdef _WIN32
 std::wstring convertToWChar(const char* str);
+#endif
 
 std::vector<std::string> retrieve_labels(std::string labels_path);
 
