@@ -47,11 +47,11 @@ your `../../opencv/build` directory (if not set).
     a. [Windows] VS Developer Command Prompt:
 
     ```bash
-    cd \d <yolo-nas-openvino-cpp-directory>
+    cd \d <yolov5-onnx-cpp-directory>
     cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
     cd build
 
-    MSBuild yolo-nas-openvino-cpp.sln /property:Configuration=Release
+    MSBuild yolov5-onnx-cpp.sln /property:Configuration=Release
     ```
 
     b. [Linux] Bash:
@@ -78,7 +78,7 @@ your `../../opencv/build` directory (if not set).
 2. To run the inference, execute the following command:
 
     ```bash
-    yolo-nas-deepsparse-cpp --model <ONNX_MODEL_PATH> [-i <IMAGE_PATH> | -v <VIDEO_PATH>] [--labels <LABEL_PATH>] [--imgsz IMAGE_SIZE] [--iou-thresh IOU_THRESHOLD] [--score-thresh CONFIDENCE_THRESHOLD]
+    yolov5-onnx-cpp --model <ONNX_MODEL_PATH> [-i <IMAGE_PATH> | -v <VIDEO_PATH>] [--labels <LABEL_PATH>] [--imgsz IMAGE_SIZE] [--iou-thresh IOU_THRESHOLD] [--score-thresh CONFIDENCE_THRESHOLD]
     ```
 
 ## Authors
