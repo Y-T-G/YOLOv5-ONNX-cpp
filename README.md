@@ -96,4 +96,4 @@ YOLO-NAS in C++ which was utilized in this project.
 
 This project is licensed under the
 [MIT](https://mit-license.org/) License - see the
-[LICENSE](LICENSE) file for details. DeepSparse Community edition is only for evaluation, research, and non-production. See the [DeepSparse Community License](https://github.com/neuralmagic/deepsparse/blob/main/LICENSE-NEURALMAGIC) for more details.
+[LICENSE](LICENSE) file for details.
