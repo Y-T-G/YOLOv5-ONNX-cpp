@@ -24,6 +24,7 @@ SOFTWARE.
 */
 
 #pragma once
+#include <vector>
 
 std::string LogInfo(std::string header, std::string body);
 
