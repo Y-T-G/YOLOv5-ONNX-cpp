@@ -63,7 +63,7 @@ private:
     std::vector<int> imgSize;
     cv::Mat pre_process_onnx(cv::Mat& img, cv::Mat& blob, std::vector<float>& ratios);
     void letterbox(cv::Mat& source, cv::Mat& dst, std::vector<float>& ratios, const cv::Scalar& color);
-    void YOLOv5::post_process_onnx(std::vector<Ort::Value>& outputTensors, std::vector<float>& bboxes, std::vector<int>& bboxes_shape, std::vector<float>& scores, std::vector<int>& scores_shape);
+    void post_process_onnx(std::vector<Ort::Value>& outputTensors, std::vector<float>& bboxes, std::vector<int>& bboxes_shape, std::vector<float>& scores, std::vector<int>& scores_shape);
 
     Postprocessor postprocessor;
 
