@@ -69,7 +69,6 @@ YOLOv5::YOLOv5(std::string modelPath, std::vector<int> imgsz, bool gpu, float sc
     isDynamic = false;
     if (inputDims[2] == -1 && inputDims[3] == -1)
     {
-        std::cout << "Dynamic input shape" << std::endl;
         isDynamic = true;
         inputDims[0] = batchSize;
     }
