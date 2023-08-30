@@ -72,8 +72,8 @@ Args parseArgs(int argc, char **argv)
     }
 
     std::string modelPath = program.get<std::string>("--model");
-    bool useGPU = program.get<bool>("--gpu");
-    bool save = program.get<bool>("--save");
+    bool useGPU = program.is_used("--gpu");
+    bool save = program.is_used("--save");
     float scoreThresh = program.get<float>("--score-thresh");
     float iouThresh = program.get<float>("--iou-thresh");
     std::vector<int> imgSize = program.get<std::vector<int>>("--imgsz");
